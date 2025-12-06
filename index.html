@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Warung Makan Yu Tri - Makanan Rumahan Enak & Terjangkau</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            orange: {
+              500: '#f97316',
+              400: '#fb923c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 2% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalSlide 0.4s ease-out;
+    }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-utensils text-orange-500 text-2xl"></i>
+        <h1 class="text-2xl font-bold text-gray-800">Warung Makan Yu Tri</h1>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="#home" class="text-gray-700 hover:text-orange-500 font-medium">Beranda</a>
+        <a href="#menu" class="text-gray-700 hover:text-orange-500 font-medium">Menu</a>
+        <a href="#about" class="text-gray-700 hover:text-orange-500 font-medium">Tentang</a>
+        
+      </nav>
+      <button class="md:hidden text-gray-700">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative bg-gradient-to-r from-orange-400 to-red-500 text-white">
+    <div class="container mx-auto px-4 py-20 md:py-32 text-center">
+      <div class="animate-fade-in">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">Selamat Datang di Warung Makan Yu Tri!</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Nikmati hidangan rumahan yang lezat, sehat, dan terjangkau untuk keluarga Anda
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="bg-white text-orange-500 px-8 py-3 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors">
+            Pesan Sekarang
+          </button>
+          <button onclick="openMenuModal()" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-orange-500 transition-colors">
+            Lihat Menu Lengkap
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 text-center animate-bounce">
+      <i class="fas fa-chevron-down text-xl"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Tentang Warung Makan Yu Tri</h2>
+        <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="md:w-1/2">
+          <img src="https://placehold.co/500x400/ff6b35/ffffff?text=Warung+Yu+Tri" alt="Warung Makan Yu Tri" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2">
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Warung Keluarga Sejak 2011</h3>
+          <p class="text-gray-600 mb-4 text-lg">
+            Warung Makan Yu Tri berdiri sejak tahun 2011 dengan misi menyediakan makanan rumahan yang enak, 
+            sehat, dan terjangkau untuk semua kalangan. Kami menggunakan bahan-bahan segar pilihan dan 
+            resep turun-temurun yang dijamin membuat Anda ketagihan!
+          </p>
+          <p class="text-gray-600 mb-6 text-lg">
+            Setiap hidangan kami dimasak dengan penuh cinta dan perhatian, 
+            seperti masakan ibu sendiri di rumah.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-clock text-orange-500"></i>
+              <span class="font-medium">Buka 07.00 - 19.00</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-map-marker-alt text-orange-500"></i>
+              <span class="font-medium">Kewaluhan, Kertosari, Temanggung, Temanggung Regency, Central Java 56217</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Menu Favorit Kami</h2>
+        <div class="w-20 h-1 bg-orange-500 mx-auto"></div>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+          Berbagai pilihan hidangan lezat yang siap memanjakan lidah Anda
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Nasi Brongkos Sapi -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover transition-shadow">
+          <img src="https://placehold.co/300x200/8B4513/ffffff?text=Nasi+Brongkos+Sapi" alt="Nasi Brongkos Sapi" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-gray-800">Nasi Brongkos Sapi</h3>
+              <span class="text-lg font-bold text-orange-500">Rp 15.000</span>
+            </div>
+            <div class="flex text-yellow-400 mt-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Pecel Mie -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover transition-shadow">
+          <img src="https://placehold.co/300x200/228B22/ffffff?text=Pecel+Mie" alt="Pecel Mie" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-gray-800">Pecel Mie</h3>
+              <span class="text-lg font-bold text-orange-500">Rp 5.000</span>
+            </div>
+            <div class="flex text-yellow-400 mt-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <!-- Nasi Ayam Opor -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover transition-shadow">
+          <img src="https://placehold.co/300x200/FFD700/333333?text=Nasi+Ayam+Opor" alt="Nasi Ayam Opor" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-bold text-gray-800">Nasi Ayam Opor</h3>
+              <span class="text-lg font-bold text-orange-500">Rp 18.000</span>
+            </div>
+            <div class="flex text-yellow-400 mt-2">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <button onclick="openMenuModal()" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold text-lg transition-colors">
+          Lihat Menu Lengkap
+        </button>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <i class="fas fa-utensils text-orange-500"></i>
+        <span class="text-xl font-bold">Warung Makan Yu Tri</span>
+      </div>
+      <p class="text-gray-400 mb-4">
+        © 2025 Warung Makan Yu Tri. All rights reserved.
+      </p>
+      <p class="text-gray-400">
+        Makanan Rumahan yang Membawa Kenangan
+      </p>
+    </div>
+  </footer>
+
+  <!-- Menu Lengkap Modal -->
+  <div id="menuModal" class="modal">
+    <div class="modal-content">
+      <div class="flex justify-between items-center mb-6 pb-4 border-b">
+        <h2 class="text-2xl font-bold text-gray-800">Menu Lengkap Warung Makan Yu Tri</h2>
+        <button onclick="closeMenuModal()" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+      </div>
+
+      <!-- Makanan -->
+      <div class="mb-8">
+        <h3 class="text-xl font-bold text-orange-500 mb-4">Makanan</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between border-b pb-2">
+            <span>Nasi Brongkos Sapi</span>
+            <span class="font-semibold">Rp 15.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Pecel Mie</span>
+            <span class="font-semibold">Rp 5.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Nasi Ayam Opor</span>
+            <span class="font-semibold">Rp 18.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Nasi Ayam Goreng</span>
+            <span class="font-semibold">Rp 15.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Nasi Telur Dadar</span>
+            <span class="font-semibold">Rp 10.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Nasi Sayur Lodeh</span>
+            <span class="font-semibold">Rp 12.000</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Nasi Sambal Goreng</span>
+            <span class="font-semibold">Rp 14.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minuman -->
+      <div>
+        <h3 class="text-xl font-bold text-orange-500 mb-4">Minuman</h3>
+        <div class="space-y-3">
+          <div class="flex justify-between border-b pb-2">
+            <span>Es Teh Manis</span>
+            <span class="font-semibold">Rp 3.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Es Jeruk</span>
+            <span class="font-semibold">Rp 5.000</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span>Es Kelapa Muda</span>
+            <span class="font-semibold">Rp 7.000</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Air Putih Mineral</span>
+            <span class="font-semibold">Rp 2.000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center text-sm text-gray-600">
+        Harga sudah termasuk pajak. Buka setiap hari pukul 07.00–19.00 WIB.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMenuModal() {
+      document.getElementById('menuModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuModal() {
+      document.getElementById('menuModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Tutup modal jika klik di luar konten
+    window.onclick = function(event) {
+      const modal = document.getElementById('menuModal');
+      if (event.target === modal) {
+        closeMenuModal();
+      }
+    }
+  </script>
+
+</body>
+</html>
+
